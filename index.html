@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>learn MVVM</title>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="./js/observe.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script src="./js/compile.js"></script>
+    <script src="./js/mvvm.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<div class="MVVMCON">
+    <h1>MVVM</h1>
+    <h2 style="cursor: pointer" onclick="document.getElementsByClassName('info1')[0].style.display = document.getElementsByClassName('info1')[0].style.display=='block'?'none':'block'">简介：</h2>
+    <ul class="info1">
+        <li><spn>为解决适用于RIA应用系统开发的设计模式的问题，提出引出MVVM模式。该模式由视图、视图模型、模型三部分组成，通过实现INotifyPropertyChanged接口，解决模型到视图模型的数据传导问题，使模型独立于视图模型，通过实现ICommand接口，解决视图中的事件绑定问题，结合数据绑定，使视图模型独立于视图。通过实现 Mediator模式(中介者模式)完成模型与模型之间的交互，并在一定程度上减少模型与模型之间的耦合度。</spn></li>
+        <li><span>MVVM模式是Model-View-ViewMode模式的简称。由视图(View)、视图模型(ViewModel)、模型(Model)三部分组成。通过这三部分实现UI逻辑、呈现逻辑和状态控制、数据与业务逻辑的分离。</span></li>
+        <li><span>视图(View):<br/>&nbsp;&nbsp;&nbsp;&nbsp;视图负责界面和显示。它通过DataContext(数据上下文)和ViewModel进行数据绑定，不直接与Model交互。 可以绑定Behavior/Comand来调用ViewModel的方法，Command是View到ViewModel的单向通行，通过实现Silverlight提供的IComand接口来实现绑定，让View触发事件，ViewModel来处理事件，以解决事件绑定功能。</span></li>
+        <li><span>视图模型(ViewModel):<br/>&nbsp;&nbsp;&nbsp;&nbsp;视图模型主要包括界面逻辑和模型数据封装，Behavior/Command事件响应处理，绑定属性定义和集合等。它是View和Model的桥梁，是对Model的抽象，比如：Model中数据格式是“年月日”，可以在ViewModel中转换Model的数据为“日月年”供View显示。</span></li>
+        <li><span>模型(Model):<br/>&nbsp;&nbsp;&nbsp;&nbsp;Model与MVC模式一样，Model用于封装与应用程序的业务逻辑相关的数据以及对数据的处理方法。它具有对数据直接访问的权利，例如对数据库的访问，Model不依赖于View和ViewModel，也就是说，模型不关心会被如何显示或是如何被操作，模型也不能包含任何用户使用的与界面相关的逻辑。Model在实际开发中根据实际情况可以进行细分。比如在广州市城乡规划资源平台就将Model将Service和Reposiroty结合为WCF服务由ViewModel进行调用。</span></li>
+    </ul>
+    <h2 style="cursor: pointer" onclick="document.getElementsByClassName('info2')[0].style.display = document.getElementsByClassName('info2')[0].style.display=='none'?'block':'none'">好处：</h2>
+    <ul class="info2">
+        <li><span>低耦合。View可以独立于Model变化和修改，一个ViewModel可以绑定到不同的View上，当View变化的时候Model可以不变，当Model变化的时候View也可以不变。</span></li>
+        <li><span>可重用性。可以把一些视图的逻辑放在ViewModel里面，让很多View重用这段视图逻辑。</span></li>
+        <li><span>独立开发。开发人员可以专注与业务逻辑和数据的开发(ViewModel)。设计人员可以专注于界面(View)的设计。</span></li>
+        <li><span>可测试性。可以针对ViewModel来对界面(View)进行测试</span></li>
+    </ul>
+    <h2>实现：</h2>
+    <ul>
+        <li>发布者-订阅者模式（backbone.js）
+            <div class="testMVVM1">
+                <input class="input1" />
+                <span class="input1bind"></span>
+            </div>
+        </li>
+        <li>脏值检查（angular.js）
+            <div class="testMVVM2">
+                <input class="input2" />
+                <span class="input2bind"></span>
+            </div>
+        </li>
+        <li>数据劫持（vue.js）(借用下大神的图片这里)<br />
+            <img src="mvvm.png">
+            <div id="mvvmTest" class="testMVVM2">
+                <input type="text" v-model="someStr" class="input2" />
+                <span class="input2bind">{{getValue}}</span>
+            </div>
+        </li>
+    </ul>
+    <div></div>
+</div>
+</body>
+</html>
